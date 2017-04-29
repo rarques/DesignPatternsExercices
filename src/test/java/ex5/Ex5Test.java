@@ -1,12 +1,13 @@
 package ex5;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**
  * Created by rarques on 4/27/2017.
  */
-public class TestTask {
+public class Ex5Test {
 
     @Test
     public void testWithSimpleTasks() {
