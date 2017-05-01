@@ -25,7 +25,7 @@ public class Sale extends Observable {
     }
 
     public SLI getLastItem() {
-        return lines.get(0);
+        return lines.get(lines.size() - 1);
     }
 
 }
