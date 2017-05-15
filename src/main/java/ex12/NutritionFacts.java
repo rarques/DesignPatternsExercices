@@ -12,18 +12,13 @@ public class NutritionFacts {
     private final int sodium;
     private final int carbohydrate;
 
-    protected NutritionFacts(int servingSize,
-                             int servings,
-                             int calories,
-                             int fat,
-                             int sodium,
-                             int carbohydrate) {
-        this.servingSize = servingSize;
-        this.servings = servings;
-        this.calories = calories;
-        this.fat = fat;
-        this.sodium = sodium;
-        this.carbohydrate = carbohydrate;
+    private NutritionFacts(Builder builder) {
+        this.servingSize = builder.servingSize;
+        this.servings = builder.servings;
+        this.calories = builder.calories;
+        this.fat = builder.fat;
+        this.sodium = builder.sodium;
+        this.carbohydrate = builder.carbohydrate;
     }
 
     @Override
@@ -53,30 +48,25 @@ public class NutritionFacts {
         }
 
         public NutritionFacts build() {
-            return new NutritionFacts(servingSize,
-                    servings,
-                    calories,
-                    fat,
-                    sodium,
-                    carbohydrate);
+            return new NutritionFacts(this);
         }
 
-        public NutritionFacts.Builder calories(int calories) {
+        public Builder calories(int calories) {
             this.calories = calories;
             return this;
         }
 
-        public NutritionFacts.Builder fat(int fat) {
+        public Builder fat(int fat) {
             this.fat = fat;
             return this;
         }
 
-        public NutritionFacts.Builder sodium(int sodium) {
+        public Builder sodium(int sodium) {
             this.sodium = sodium;
             return this;
         }
 
-        public NutritionFacts.Builder carbohydrate(int carbohydrate) {
+        public Builder carbohydrate(int carbohydrate) {
             this.carbohydrate = carbohydrate;
             return this;
         }
