@@ -5,11 +5,15 @@ package ex15;
  */
 public class SLIFactory {
 
-    public static SLI createSLI(ProductDescription description, int quantity) {
-        if (description.getType() == ProductDescription.HALF_PRICE) {
-            return new SLI50PerCent(description, quantity);
+    public static SLI createSLI(ProductDescription productDescription, int quantity) {
+        if (is50PerCentOffer(productDescription)) {
+            return new SLI50PerCent(productDescription, quantity);
         } else {
-            return new SLIStandard(description, quantity);
+            return new SLIStandard(productDescription, quantity);
         }
+    }
+
+    private static boolean is50PerCentOffer(ProductDescription description) {
+        return description.getType() == ProductDescription.HALF_PRICE;
     }
 }
