@@ -66,7 +66,7 @@ public class MachineCompositeTest {
         MachineComposite composite = new MachineComposite();
         composite.addObserver(graphicInterface);
         assertFalse(graphicInterface.notified);
-        Machine machine = createBrokenMachine();
+        Machine machine = new Machine();
         composite.addComponent(machine);
         assertFalse(graphicInterface.notified);
         machine.setBroken();
