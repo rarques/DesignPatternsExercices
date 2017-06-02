@@ -9,13 +9,9 @@ public abstract class MachineComponent extends Observable {
 
     protected boolean broken;
 
-    public void setBroken() {
-        broken = true;
-    }
+    public abstract void setBroken();
 
-    public void repair() {
-        broken = false;
-    }
+    public abstract void repair();
 
     public abstract boolean isBroken();
 
@@ -26,7 +22,7 @@ public abstract class MachineComponent extends Observable {
             notifyChanges();
     }
 
-    void notifyChanges() {
+    protected void notifyChanges() {
         setChanged();
         notifyObservers();
     }
