@@ -20,17 +20,26 @@ public class MachineComposite extends MachineComponent {
     }
 
     @Override
+    public void repair() {
+        boolean wasBroken = broken;
+        broken = false;
+        if (wasBroken != broken)
+            notifyChanges();
+    }
+
+    @Override
     public boolean isBroken() {
-        return false;
+        for (MachineComponent component : components) {
+            if (component.isBroken())
+                return true;
+        }
+        return broken;
     }
 
     public void addComponent(MachineComponent component) {
         components.add(component);
-    }
-
-    private void notifyChanges() {
-        setChanged();
-        notifyObservers();
+        if (component.isBroken())
+            notifyChanges();
     }
 
 }

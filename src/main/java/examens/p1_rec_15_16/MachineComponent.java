@@ -19,4 +19,15 @@ public abstract class MachineComponent extends Observable {
 
     public abstract boolean isBroken();
 
+    protected void changeBrokenAndNotify(boolean newBroken) {
+        boolean wasBroken = broken;
+        broken = newBroken;
+        if (wasBroken != broken)
+            notifyChanges();
+    }
+
+    void notifyChanges() {
+        setChanged();
+        notifyObservers();
+    }
 }
