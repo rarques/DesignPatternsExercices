@@ -3,11 +3,8 @@ package examens.p1_rec_15_16;
 import org.junit.Before;
 import org.junit.Test;
 
-import javax.crypto.Mac;
-import java.util.Observable;
-import java.util.Observer;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by rarques on 6/2/2017.
@@ -65,13 +62,3 @@ public class BrokenMachinesTest {
 
 }
 
-class GraphicInterface implements Observer {
-
-    protected boolean notified = false;
-
-    @Override
-    public void update(Observable o, Object arg) {
-        notified = true;
-    }
-
-}

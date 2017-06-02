@@ -9,10 +9,28 @@ import java.util.List;
 public class MachineComposite extends MachineComponent {
 
     private List<MachineComponent> components = new ArrayList<>();
+    private boolean broken = false;
+
+    @Override
+    public void setBroken() {
+        boolean wasBroken = broken;
+        broken = true;
+        if (wasBroken != broken)
+            notifyChanges();
+    }
 
     @Override
     public boolean isBroken() {
         return false;
+    }
+
+    public void addComponent(MachineComponent component) {
+        components.add(component);
+    }
+
+    private void notifyChanges() {
+        setChanged();
+        notifyObservers();
     }
 
 }

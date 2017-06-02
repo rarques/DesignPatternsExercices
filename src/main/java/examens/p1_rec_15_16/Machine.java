@@ -12,19 +12,21 @@ public class Machine extends MachineComponent {
         return false;
     }
 
+    @Override
     public void setBroken() {
-        changeBrokenAndNotify(true);
+        setBrokenAndNotify(true);
     }
 
-    private void changeBrokenAndNotify(boolean newBroken) {
+    @Override
+    public void repair() {
+        setBrokenAndNotify(false);
+    }
+
+    private void setBrokenAndNotify(boolean newBroken) {
         boolean wasBroken = broken;
         broken = newBroken;
         if (wasBroken != broken)
             notifyChanges();
-    }
-
-    public void repair() {
-        changeBrokenAndNotify(false);
     }
 
     private void notifyChanges() {
