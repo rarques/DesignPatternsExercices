@@ -1,5 +1,6 @@
 package examens.p1_rec_15_16;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import javax.crypto.Mac;
@@ -13,9 +14,15 @@ import static org.junit.Assert.*;
  */
 public class BrokenMachinesTest {
 
+    private GraphicInterface graphicInterface;
+
+    @Before
+    public void setUp() throws Exception {
+        graphicInterface = new GraphicInterface();
+    }
+
     @Test
     public void test_ObserverIsNotifiedWhenMachineBreaks() {
-        GraphicInterface graphicInterface = new GraphicInterface();
         Machine machine = new Machine();
         machine.addObserver(graphicInterface);
         machine.setBroken();
@@ -24,12 +31,16 @@ public class BrokenMachinesTest {
 
     @Test
     public void test_observerIsNotNotifiedIfStateDoesNotChange() {
-        GraphicInterface graphicInterface = new GraphicInterface();
+        Machine brokenMachine = createBrokenMachine();
+        brokenMachine.addObserver(graphicInterface);
+        brokenMachine.setBroken();
+        assertFalse(graphicInterface.notified);
+    }
+
+    private Machine createBrokenMachine() {
         Machine machine = new Machine();
         machine.setBroken();
-        machine.addObserver(graphicInterface);
-        machine.setBroken();
-        assertFalse(graphicInterface.notified);
+        return machine;
     }
 
 }
