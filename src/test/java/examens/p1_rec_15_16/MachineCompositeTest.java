@@ -61,6 +61,19 @@ public class MachineCompositeTest {
         assertTrue(graphicInterface.notified);
     }
 
+    @Test
+    public void test_observerNotifiedWhenAddedComponentBreaks() {
+        MachineComposite composite = new MachineComposite();
+        composite.addObserver(graphicInterface);
+        assertFalse(graphicInterface.notified);
+        Machine machine = createBrokenMachine();
+        composite.addComponent(machine);
+        assertFalse(graphicInterface.notified);
+        machine.setBroken();
+        assertTrue(graphicInterface.notified);
+
+    }
+
     private List<Machine> createWorkingMachines() {
         return Arrays.asList(new Machine(),
                 new Machine(),
