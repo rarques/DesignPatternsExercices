@@ -13,10 +13,18 @@ public class Machine extends MachineComponent {
     }
 
     public void setBroken() {
+        changeBrokenAndNotify(true);
+    }
+
+    private void changeBrokenAndNotify(boolean newBroken) {
         boolean wasBroken = broken;
-        broken = true;
+        broken = newBroken;
         if (wasBroken != broken)
             notifyChanges();
+    }
+
+    public void repair() {
+        changeBrokenAndNotify(false);
     }
 
     private void notifyChanges() {

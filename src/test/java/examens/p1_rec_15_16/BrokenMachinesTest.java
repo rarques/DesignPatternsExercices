@@ -37,6 +37,14 @@ public class BrokenMachinesTest {
         assertFalse(graphicInterface.notified);
     }
 
+    @Test
+    public void test_observerIsNotifiedWhenBrokenMachineIsRepaired() {
+        Machine brokenMachine = createBrokenMachine();
+        brokenMachine.addObserver(graphicInterface);
+        brokenMachine.repair();
+        assertTrue(graphicInterface.notified);
+    }
+
     private Machine createBrokenMachine() {
         Machine machine = new Machine();
         machine.setBroken();
